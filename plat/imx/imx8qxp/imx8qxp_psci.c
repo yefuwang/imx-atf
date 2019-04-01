@@ -179,8 +179,10 @@ void imx_domain_suspend(const psci_power_state_t *target_state)
 		isb();
 	}
 
+    /*CHANGE_BACK
 	if (is_local_state_off(CLUSTER_PWR_STATE(target_state)))
 		sc_pm_req_low_power_mode(ipc_handle, SC_R_A35, SC_PM_PW_MODE_OFF);
+        */
 
 	if (is_local_state_retn(SYSTEM_PWR_STATE(target_state))) {
 		plat_gic_cpuif_disable();
@@ -196,7 +198,9 @@ void imx_domain_suspend(const psci_power_state_t *target_state)
 		gpt_reg[1] = mmio_read_32(IMX_GPT0_BASE + 0x4);
 		sc_pm_set_resource_power_mode(ipc_handle, SC_R_GPT_0, SC_PM_PW_MODE_OFF);
 
-		sc_pm_req_low_power_mode(ipc_handle, SC_R_A35, SC_PM_PW_MODE_OFF);
+		/*
+         * CHANGE_BACK 
+         * sc_pm_req_low_power_mode(ipc_handle, SC_R_A35, SC_PM_PW_MODE_OFF);*/
 		sc_pm_req_sys_if_power_mode(ipc_handle, SC_R_A35, SC_PM_SYS_IF_DDR,
 			SC_PM_PW_MODE_ON, SC_PM_PW_MODE_OFF);
 		sc_pm_req_sys_if_power_mode(ipc_handle, SC_R_A35, SC_PM_SYS_IF_MU,
