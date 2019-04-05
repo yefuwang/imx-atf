@@ -35,6 +35,7 @@
 
 sc_ipc_t ipc_handle;
 
+
 #define BL31_RO_BASE	(unsigned long)(&__RO_START__)
 #define BL31_RO_LIMIT	(unsigned long)(&__RO_END__)
 #define BL31_END	(unsigned long)(&__BL31_END__)
